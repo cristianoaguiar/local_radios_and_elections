@@ -155,3 +155,46 @@
  Mean   : 24420   Mean   :0.08209                     
  3rd Qu.: 24938   3rd Qu.:0.00000                     
  Max.   :428527   Max.   :6.00000  
+
+> library(readr)
+Warning message:
+package ‘readr’ was built under R version 3.3.2 
+> final_before_after_control_group <- read_csv("~/Documents/Dona Tese/final_before_after_control_group.csv", 
++     col_types = cols(`%VV2008` = col_number(), 
++         `%VV2012` = col_number(), MEANDIF = col_number()))
+> View(final_before_after_control_group)
+> t.test(final_before_after_control_group$`%VV2012`, final_before_after_control_group$`%VV2008`, "two.sided", paired=TRUE)
+
+	Paired t-test
+
+data:  final_before_after_control_group$`%VV2012` and final_before_after_control_group$`%VV2008`
+t = 2.8848, df = 3437, p-value = 0.003941
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.3147677 1.6503987
+sample estimates:
+mean of the differences 
+              0.9825832 
+
+> summary(final_before_after_control_group)
+      UF             MUNICIPIO        
+ Length:3438        Length:3438       
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      
+  CANDIDATO           SITUACAO            %VV2008      
+ Length:3438        Length:3438        Min.   :  0.00  
+ Class :character   Class :character   1st Qu.: 36.75  
+ Mode  :character   Mode  :character   Median : 46.75  
+                                       Mean   : 44.00  
+                                       3rd Qu.: 53.09  
+                                       Max.   :100.00  
+    %VV2012          MEANDIF         
+ Min.   :  0.00   Min.   :-100.0000  
+ 1st Qu.: 37.46   1st Qu.:  -8.2088  
+ Median : 48.05   Median :   0.9450  
+ Mean   : 44.98   Mean   :   0.9826  
+ 3rd Qu.: 55.07   3rd Qu.:  10.6255  
+ Max.   :100.00   Max.   :  75.2000  
