@@ -2,15 +2,15 @@
 -Copyright (C) 2016 The R Foundation for Statistical Computing
 -Platform: x86_64-apple-darwin13.4.0 (64-bit)
 -
--R é um software livre e vem sem GARANTIA ALGUMA.
--Você pode redistribuí-lo sob certas circunstâncias.
--Digite 'license()' ou 'licence()' para detalhes de distribuição.
+-R Ã© um software livre e vem sem GARANTIA ALGUMA.
+-VocÃª pode redistribuÃ­-lo sob certas circunstÃ¢ncias.
+-Digite 'license()' ou 'licence()' para detalhes de distribuiÃ§Ã£o.
 -
--R é um projeto colaborativo com muitos contribuidores.
--Digite 'contributors()' para obter mais informações e
--'citation()' para saber como citar o R ou pacotes do R em publicações.
+-R Ã© um projeto colaborativo com muitos contribuidores.
+-Digite 'contributors()' para obter mais informaÃ§Ãµes e
+-'citation()' para saber como citar o R ou pacotes do R em publicaÃ§Ãµes.
 -
--Digite 'demo()' para demonstrações, 'help()' para o sistema on-line de ajuda,
+-Digite 'demo()' para demonstraÃ§Ãµes, 'help()' para o sistema on-line de ajuda,
 -ou 'help.start()' para abrir o sistema de ajuda em HTML no seu navegador.
 -Digite 'q()' para sair do R.
 -
@@ -18,7 +18,7 @@
 -
 -> library(readr)
 -Warning message:
--package ‘readr’ was built under R version 3.3.2 
+-package â€˜readrâ€™ was built under R version 3.3.2 
 -> final_before_after_treatment <- read_csv("~/Documents/Dona Tese/final_before_after_treatment.csv", 
 -+     col_types = cols(ANT = col_number(), 
 -+         DEP = col_number(), DIFMED = col_number(), 
@@ -67,3 +67,91 @@
 -}
 -<environment: namespace:readr>
 -> 
+> summary(final_before_after_treatment)
+      UF                MUN              ENTIDADE        
+ Length:134         Length:134         Length:134        
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+                                                         
+     MOD                DTOUT                PART          
+ Length:134         Min.   :2000-06-23   Length:134        
+ Class :character   1st Qu.:2001-12-21   Class :character  
+ Mode  :character   Median :2003-09-02   Mode  :character  
+                    Mean   :2004-09-24                     
+                    3rd Qu.:2007-09-21                     
+                    Max.   :2012-09-04                     
+                    NA's   :1                              
+    EL2000            PART2000            VNOM2000    
+ Length:134         Length:134         Min.   :   13  
+ Class :character   Class :character   1st Qu.: 1722  
+ Mode  :character   Mode  :character   Median : 2469  
+                                       Mean   : 4568  
+                                       3rd Qu.: 5163  
+                                       Max.   :34437  
+                                       NA's   :28     
+     V%2000         EL2004            PART2004        
+ Min.   : 0.58   Length:134         Length:134        
+ 1st Qu.:38.35   Class :character   Class :character  
+ Median :47.15   Mode  :character   Mode  :character  
+ Mean   :45.07                                        
+ 3rd Qu.:56.45                                        
+ Max.   :84.63                                        
+ NA's   :28                                           
+    VNOM2004         V%2004           EL2008         
+ Min.   :   84   Min.   :   1.90   Length:134        
+ 1st Qu.: 1927   1st Qu.:  42.38   Class :character  
+ Median : 2984   Median :  47.80   Mode  :character  
+ Mean   : 5353   Mean   :  74.64                     
+ 3rd Qu.: 5558   3rd Qu.:  54.55                     
+ Max.   :42649   Max.   :2611.00                     
+ NA's   :42      NA's   :42                          
+   PART2008            VNOM2008         V%2008      
+ Length:134         Min.   :  312   Min.   : 12.09  
+ Class :character   1st Qu.: 1872   1st Qu.: 40.15  
+ Mode  :character   Median : 3268   Median : 48.70  
+                    Mean   : 4974   Mean   : 49.31  
+                    3rd Qu.: 5795   3rd Qu.: 55.41  
+                    Max.   :36556   Max.   :100.00  
+                    NA's   :60      NA's   :60      
+    EL2012            PART2012            VNOM2012    
+ Length:134         Length:134         Min.   :    0  
+ Class :character   Class :character   1st Qu.: 1517  
+ Mode  :character   Mode  :character   Median : 2853  
+                                       Mean   : 5315  
+                                       3rd Qu.: 6059  
+                                       Max.   :45324  
+                                       NA's   :70     
+     V%2012          EL2016            PART2016        
+ Min.   :  0.00   Length:134         Length:134        
+ 1st Qu.: 36.95   Class :character   Class :character  
+ Median : 46.29   Mode  :character   Mode  :character  
+ Mean   : 44.15                                        
+ 3rd Qu.: 53.55                                        
+ Max.   :100.00                                        
+ NA's   :70                                            
+    VNOM2016         V%2016           ANT        
+ Min.   :    0   Min.   : 0.00   Min.   :  0.58  
+ 1st Qu.: 2049   1st Qu.:39.62   1st Qu.: 38.31  
+ Median : 3169   Median :48.61   Median : 45.92  
+ Mean   : 5953   Mean   :45.82   Mean   : 45.13  
+ 3rd Qu.: 5309   3rd Qu.:54.67   3rd Qu.: 55.88  
+ Max.   :29602   Max.   :86.50   Max.   :100.00  
+ NA's   :109     NA's   :109                     
+      DEP             POSTR             DIFMED       
+ Min.   :  2.03   Min.   :-34.770   Min.   :-34.770  
+ 1st Qu.: 40.96   1st Qu.: -6.140   1st Qu.: -7.058  
+ Median : 49.12   Median :  0.920   Median :  0.260  
+ Mean   : 47.98   Mean   :  2.844   Mean   :  2.913  
+ 3rd Qu.: 55.33   3rd Qu.: 11.438   3rd Qu.: 12.155  
+ Max.   :100.00   Max.   : 54.800   Max.   : 55.690  
+                                                     
+      POP              GERA            EXCTRL         
+ Min.   :  2450   Min.   :0.00000   Length:134        
+ 1st Qu.:  6451   1st Qu.:0.00000   Class :character  
+ Median : 11770   Median :0.00000   Mode  :character  
+ Mean   : 24420   Mean   :0.08209                     
+ 3rd Qu.: 24938   3rd Qu.:0.00000                     
+ Max.   :428527   Max.   :6.00000  
