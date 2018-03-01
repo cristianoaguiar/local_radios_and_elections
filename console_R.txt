@@ -205,9 +205,3 @@ mean of the differences
 
 data:  final_before_after_treatment$POSTR
 W = 0.98277, p-value = 0.0885
-
-> final_clientelism_results <-matrix(c(1519, 3169, 1667, 11067), ncol=2, nrow=2)
-> View(final_clientelism_results)
-> rownames(final_clientelism_results)<-c("APAD", "N_APAD")
-> colnames(final_clientelism_results)<-c("APROV", "ARQUIV")
-> View(final_clientelism_results)
