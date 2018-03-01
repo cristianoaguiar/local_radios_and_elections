@@ -198,3 +198,10 @@ mean of the differences
  Mean   : 44.98   Mean   :   0.9826  
  3rd Qu.: 55.07   3rd Qu.:  10.6255  
  Max.   :100.00   Max.   :  75.2000  
+
+> shapiro.test(final_before_after_treatment$POSTR)
+
+	Shapiro-Wilk normality test
+
+data:  final_before_after_treatment$POSTR
+W = 0.98277, p-value = 0.0885
