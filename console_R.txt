@@ -333,3 +333,14 @@ Residuals  1049 411452   392.2
 ---
 Signif. codes:  
 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> install.packages("ggpubr")
+> mydata2 <- read.csv(file="~/Documents/Dona Tese/para_r_vperc_before_ater.csv")
+> group_by(mydata2, Group) %>% summarise(count = n(), mean = mean(Vperc, na.rm = TRUE), sd = sd(Vperc, na.rm = TRUE))
+# A tibble: 2 x 4
+  Group  count  mean    sd
+  <fct>  <int> <dbl> <dbl>
+1 After    134  48.0  16.4
+2 Before   134  45.1  17.2
+> library("ggpubr")
+> ggboxplot(mydata2, x = "Group", y = "Vperc", ylim=c(25,75))
+> ggboxplot(mydata2, x = "Group", y = "Vperc", order = c("Before", "After"), ylim=c(30,60))
