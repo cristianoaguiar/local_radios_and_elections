@@ -344,3 +344,6 @@ Signif. codes:
 > library("ggpubr")
 > ggboxplot(mydata2, x = "Group", y = "Vperc", ylim=c(25,75))
 > ggboxplot(mydata2, x = "Group", y = "Vperc", order = c("Before", "After"), ylim=c(30,60))
+> mydata4 <- read.csv(file="~/Documents/Dona Tese/para_r_antes_depois_plot.csv")
+> ggplot(,aes(x=mydata4$Group, y=mydata4$Vperc)) + geom_boxplot(outlier.shape=NA) + geom_jitter(position=position_jitter(width=.1, height=0))
+ggplot(,aes(x=mydata4$Group, y=mydata4$Vperc)) + geom_boxplot(outlier.shape=NA) + ylim(30,60) + geom_jitter(position=position_jitter(width=.1, height=0))
