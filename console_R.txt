@@ -350,3 +350,9 @@ ggplot(,aes(x=mydata4$Group, y=mydata4$Vperc)) + geom_boxplot(outlier.shape=NA) 
 > antes_depois_final <- read.csv("~/Documents/Dona Tese/antes_depois_final_revisado.csv")
 > attach(antes_depois_final)
 > View(antes_depois_final)
+> shapiro.test(POSTR)
+
+	Shapiro-Wilk normality test
+
+data:  POSTR
+W = 0.98284, p-value = 0.08987
