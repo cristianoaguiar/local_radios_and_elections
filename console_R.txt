@@ -347,3 +347,6 @@ Signif. codes:
 > mydata4 <- read.csv(file="~/Documents/Dona Tese/para_r_antes_depois_plot.csv")
 > ggplot(,aes(x=mydata4$Group, y=mydata4$Vperc)) + geom_boxplot(outlier.shape=NA) + geom_jitter(position=position_jitter(width=.1, height=0))
 ggplot(,aes(x=mydata4$Group, y=mydata4$Vperc)) + geom_boxplot(outlier.shape=NA) + ylim(30,60) + geom_jitter(position=position_jitter(width=.1, height=0))
+> antes_depois_final <- read.csv("~/Documents/Dona Tese/antes_depois_final_revisado.csv")
+> attach(antes_depois_final)
+> View(antes_depois_final)
