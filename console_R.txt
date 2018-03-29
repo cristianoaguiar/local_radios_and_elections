@@ -356,3 +356,63 @@ ggplot(,aes(x=mydata4$Group, y=mydata4$Vperc)) + geom_boxplot(outlier.shape=NA) 
 
 data:  POSTR
 W = 0.98284, p-value = 0.08987
+> todos_casos_final <- read.csv("~/Documents/Dona Tese/todos_casos_final.csv")
+> attach(todos_casos_final)
+> probittodosdados4 <- glm(Elected ~ Margin1 + Incumb + Radio_only, family = binomial)
+> summary(probittodosdados4)
+
+Call:
+glm(formula = Elected ~ Margin1 + Incumb + Radio_only, family = binomial)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.9162  -1.0429  -0.8257   1.2509   1.6358  
+
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.043321   0.160444  -6.503 7.89e-11 ***
+Margin1      0.022039   0.004241   5.196 2.03e-07 ***
+IncumbS      0.737471   0.157489   4.683 2.83e-06 ***
+Radio_onlyS  0.501630   0.157491   3.185  0.00145 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1460.3  on 1057  degrees of freedom
+Residual deviance: 1388.7  on 1054  degrees of freedom
+AIC: 1396.7
+
+Number of Fisher Scoring iterations: 4
+
+> probittodosdados5 <- glm(Elected ~ Margin1 + Incumb + Radio_only + REGION, family = binomial)
+> summary(probittodosdados5)
+
+Call:
+glm(formula = Elected ~ Margin1 + Incumb + Radio_only + REGION, 
+    family = binomial)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.9384  -1.0481  -0.8157   1.2462   1.7969  
+
+Coefficients:
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)    -1.249143   0.272506  -4.584 4.56e-06 ***
+Margin1         0.021810   0.004262   5.117 3.10e-07 ***
+IncumbS         0.722393   0.158386   4.561 5.09e-06 ***
+Radio_onlyS     0.517253   0.161561   3.202  0.00137 ** 
+REGIONNORDESTE  0.232584   0.251802   0.924  0.35565    
+REGIONNORTE    -0.334754   0.380570  -0.880  0.37907    
+REGIONSUDESTE   0.263783   0.251922   1.047  0.29506    
+REGIONSUL       0.243780   0.263923   0.924  0.35565    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1460.3  on 1057  degrees of freedom
+Residual deviance: 1384.2  on 1050  degrees of freedom
+AIC: 1400.2
+
+Number of Fisher Scoring iterations: 4
