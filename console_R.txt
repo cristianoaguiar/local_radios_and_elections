@@ -205,134 +205,7 @@ mean of the differences
 
 data:  final_before_after_treatment$POSTR
 W = 0.98277, p-value = 0.0885
-# Analysis - complete table of results (2000 - 2016) - all 5 elections
-> mydata <- read.csv("~/Documents/Dona Tese/Para_R_todas_eleicoes_factors.csv")
-> str (mydata)
-'data.frame':	1058 obs. of  27 variables:
-> attach(mydata)
-> names(mydata)
- [1] "STATE"                        
- [2] "CITY"                         
- [3] "COD.IBGE"                     
- [4] "POP.2010"                     
- [5] "OWNERS"                       
- [6] "ENTITY"                       
- [7] "TYPE"                         
- [8] "DECLARADO.TSE"                
- [9] "GRANT"                        
-[10] "months"                       
-[11] "Year"                         
-[12] "Result"                       
-[13] "Elected"                      
-[14] "party"                        
-[15] "REGION"                       
-[16] "v_nom"                        
-[17] "v_."                          
-[18] "valid.votes"                  
-[19] "dif..votes"                   
-[20] "dif..votes..."                
-[21] "Geradoras.TV..Mosaico.Anatel."
-[22] "Jornais..Atlas."              
-[23] "Online..Atlas."               
-[24] "Jornais.e.Online..Atlas."     
-[25] "Jornais.e.Online..Cat."       
-[26] "Radio_only"                   
-[27] "Government.advertising..R.."  
-> levels(TYPE)
-[1] "COMERC" "EDUCAT" "RADCOM"
-> levels(REGION)
-[1] "CENTRO-OESTE" "NORDESTE"     "NORTE"       
-[4] "SUDESTE"      "SUL"         
-> levels(Radio_only)
-[1] "N" "S"
-> model1 <- lm(v_. ~ TYPE + REGION + Radio_only)
-> summary(model1)
 
-Call:
-lm(formula = v_. ~ TYPE + REGION + Radio_only)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--46.238  -8.991   2.676  10.428  66.887 
-
-Coefficients:
-               Estimate Std. Error t value
-(Intercept)      34.761      2.657  13.083
-TYPEEDUCAT       -5.914      4.541  -1.302
-TYPERADCOM       -3.511      1.597  -2.199
-REGIONNORDESTE    3.303      2.419   1.365
-REGIONNORTE      -6.388      3.489  -1.831
-REGIONSUDESTE     5.443      2.392   2.275
-REGIONSUL         7.527      2.505   3.005
-Radio_onlyS       8.251      1.587   5.198
-               Pr(>|t|)    
-(Intercept)     < 2e-16 ***
-TYPEEDUCAT      0.19305    
-TYPERADCOM      0.02811 *  
-REGIONNORDESTE  0.17241    
-REGIONNORTE     0.06737 .  
-REGIONSUDESTE   0.02309 *  
-REGIONSUL       0.00272 ** 
-Radio_onlyS    2.42e-07 ***
----
-Signif. codes:  
-0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 19.8 on 1050 degrees of freedom
-Multiple R-squared:  0.0473,	Adjusted R-squared:  0.04094 
-F-statistic: 7.447 on 7 and 1050 DF,  p-value: 9.212e-09
-> model2 <- lm(v_. ~ TYPE + REGION + Radio_only + months)
-> summary(model2)
-
-Call:
-lm(formula = v_. ~ TYPE + REGION + Radio_only + months)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--46.005  -9.117   2.626  10.397  67.146 
-
-Coefficients:
-                Estimate Std. Error t value Pr(>|t|)    
-(Intercept)    35.767422   3.146282  11.368  < 2e-16 ***
-TYPEEDUCAT     -6.362855   4.603685  -1.382  0.16723    
-TYPERADCOM     -3.951074   1.758709  -2.247  0.02487 *  
-REGIONNORDESTE  3.250202   2.421772   1.342  0.17986    
-REGIONNORTE    -6.596086   3.506982  -1.881  0.06027 .  
-REGIONSUDESTE   5.412122   2.393524   2.261  0.02395 *  
-REGIONSUL       7.401517   2.514242   2.944  0.00331 ** 
-Radio_onlyS     8.219272   1.588799   5.173 2.75e-07 ***
-months         -0.005736   0.009598  -0.598  0.55018    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-Residual standard error: 19.8 on 1049 degrees of freedom
-Multiple R-squared:  0.04762,	Adjusted R-squared:  0.04036 
-F-statistic: 6.556 on 8 and 1049 DF,  p-value: 2.269e-08
-> anova(model1)
-Analysis of Variance Table
-
-Response: v_.
-             Df Sum Sq Mean Sq F value    Pr(>F)    
-TYPE          2    641   320.3   0.817 0.4420355    
-REGION        4   9202  2300.6   5.869 0.0001134 ***
-Radio_only    1  10590 10590.1  27.016 2.424e-07 ***
-Residuals  1050 411592   392.0                      
----
-Signif. codes:  
-0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-> anova(model2)
-Analysis of Variance Table
-
-Response: v_.
-             Df Sum Sq Mean Sq F value    Pr(>F)    
-TYPE          2    641   320.3  0.8165 0.4422566    
-REGION        4   9202  2300.6  5.8654 0.0001142 ***
-Radio_only    1  10590 10590.1 26.9995 2.445e-07 ***
-months        1    140   140.1  0.3572 0.5501824    
-Residuals  1049 411452   392.2                      
----
-Signif. codes:  
-0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 > install.packages("ggpubr")
 > mydata2 <- read.csv(file="~/Documents/Dona Tese/para_r_vperc_before_ater.csv")
 > group_by(mydata2, Group) %>% summarise(count = n(), mean = mean(Vperc, na.rm = TRUE), sd = sd(Vperc, na.rm = TRUE))
@@ -356,63 +229,106 @@ ggplot(,aes(x=mydata4$Group, y=mydata4$Vperc)) + geom_boxplot(outlier.shape=NA) 
 
 data:  POSTR
 W = 0.98284, p-value = 0.08987
-> todos_casos_final <- read.csv("~/Documents/Dona Tese/todos_casos_final.csv")
-> attach(todos_casos_final)
-> probittodosdados4 <- glm(Elected ~ Margin1 + Incumb + Radio_only, family = binomial)
-> summary(probittodosdados4)
+> amostra_todos_final <- read.csv("~/Documents/Dona Tese/amostra_todos_final_2.csv")
+> attach(amostra_todos_final)
+> View(amostra_todos_final)
+> probit_publicar <- glm(Elected ~ Margin1 + Radio_only + IDH.M + POP.2010 + on_air_prev + Incumb + TYPE + Per.capita.2010..IBGE. + PIB.2010..IBGE...1000. + GINI.Datasus.2010 + REGION, family = binomial)
+> summary(probit_publicar)
 
 Call:
-glm(formula = Elected ~ Margin1 + Incumb + Radio_only, family = binomial)
+glm(formula = Elected ~ Margin1 + Radio_only + IDH.M + POP.2010 + 
+    on_air_prev + Incumb + TYPE + Per.capita.2010..IBGE. + PIB.2010..IBGE...1000. + 
+    GINI.Datasus.2010 + REGION, family = binomial)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.9162  -1.0429  -0.8257   1.2509   1.6358  
+-1.8892  -1.0609  -0.7863   1.2233   2.0271  
 
 Coefficients:
-             Estimate Std. Error z value Pr(>|z|)    
-(Intercept) -1.043321   0.160444  -6.503 7.89e-11 ***
-Margin1      0.022039   0.004241   5.196 2.03e-07 ***
-IncumbS      0.737471   0.157489   4.683 2.83e-06 ***
-Radio_onlyS  0.501630   0.157491   3.185  0.00145 ** 
+                                  Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                     -3.635e-01  1.576e+00  -0.231   0.8176    
+Margin1                          2.183e-02  4.338e-03   5.031 4.88e-07 ***
+Radio_onlyS                      4.810e-01  1.905e-01   2.525   0.0116 *  
+IDH.M                            7.466e-01  1.679e+00   0.445   0.6566    
+POP.2010                         1.534e-06  1.605e-06   0.956   0.3392    
+on_air_prevde cinco a 10 anos    1.041e-01  2.592e-01   0.402   0.6878    
+on_air_prevmais de 1/menos de 5 -2.183e-02  2.628e-01  -0.083   0.9338    
+on_air_prevmais de 10 anos      -8.962e-02  2.651e-01  -0.338   0.7353    
+IncumbS                          7.299e-01  1.602e-01   4.557 5.18e-06 ***
+TYPEEDUCAT                      -8.479e-01  5.264e-01  -1.611   0.1072    
+TYPERADCOM                      -5.261e-02  1.831e-01  -0.287   0.7739    
+Per.capita.2010..IBGE.          -7.405e-06  6.560e-06  -1.129   0.2590    
+PIB.2010..IBGE...1000.          -8.629e-08  1.041e-07  -0.829   0.4074    
+GINI.Datasus.2010               -2.428e+00  1.314e+00  -1.847   0.0647 .  
+REGIONNORDESTE                   2.947e-01  3.025e-01   0.974   0.3300    
+REGIONNORTE                     -1.670e-01  4.152e-01  -0.402   0.6875    
+REGIONSUDESTE                    2.318e-01  2.560e-01   0.905   0.3653    
+REGIONSUL                        1.663e-01  2.697e-01   0.616   0.5377    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
     Null deviance: 1460.3  on 1057  degrees of freedom
-Residual deviance: 1388.7  on 1054  degrees of freedom
-AIC: 1396.7
+Residual deviance: 1373.6  on 1040  degrees of freedom
+AIC: 1409.6
 
 Number of Fisher Scoring iterations: 4
-
-> probittodosdados5 <- glm(Elected ~ Margin1 + Incumb + Radio_only + REGION, family = binomial)
-> summary(probittodosdados5)
+> model_publicar <- lm(v_. ~ Margin1 + Radio_only + IDH.M + POP.2010 + on_air_prev + Incumb + TYPE + Per.capita.2010..IBGE. + PIB.2010..IBGE...1000. + GINI.Datasus.2010 + REGION)
+> summary(model_publicar)
 
 Call:
-glm(formula = Elected ~ Margin1 + Incumb + Radio_only + REGION, 
-    family = binomial)
+lm(formula = v_. ~ Margin1 + Radio_only + IDH.M + POP.2010 + 
+    on_air_prev + Incumb + TYPE + Per.capita.2010..IBGE. + PIB.2010..IBGE...1000. + 
+    GINI.Datasus.2010 + REGION)
 
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.9384  -1.0481  -0.8157   1.2462   1.7969  
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-52.051  -8.679   4.765  12.582  28.486 
 
 Coefficients:
-                Estimate Std. Error z value Pr(>|z|)    
-(Intercept)    -1.249143   0.272506  -4.584 4.56e-06 ***
-Margin1         0.021810   0.004262   5.117 3.10e-07 ***
-IncumbS         0.722393   0.158386   4.561 5.09e-06 ***
-Radio_onlyS     0.517253   0.161561   3.202  0.00137 ** 
-REGIONNORDESTE  0.232584   0.251802   0.924  0.35565    
-REGIONNORTE    -0.334754   0.380570  -0.880  0.37907    
-REGIONSUDESTE   0.263783   0.251922   1.047  0.29506    
-REGIONSUL       0.243780   0.263923   0.924  0.35565    
+                                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                      4.657e+01  1.275e+01   3.653 0.000272 ***
+Margin1                          4.429e-01  2.906e-02  15.240  < 2e-16 ***
+Radio_onlyS                      7.235e+00  1.527e+00   4.738 2.46e-06 ***
+IDH.M                           -2.007e-01  1.359e+01  -0.015 0.988225    
+POP.2010                         1.356e-05  9.453e-06   1.434 0.151802    
+on_air_prevde cinco a 10 anos    1.073e+00  2.117e+00   0.507 0.612483    
+on_air_prevmais de 1/menos de 5  1.303e+00  2.147e+00   0.607 0.543882    
+on_air_prevmais de 10 anos      -5.240e-01  2.163e+00  -0.242 0.808618    
+IncumbS                          1.091e+01  1.299e+00   8.399  < 2e-16 ***
+TYPEEDUCAT                      -7.504e+00  3.945e+00  -1.902 0.057401 .  
+TYPERADCOM                      -4.391e+00  1.489e+00  -2.950 0.003249 ** 
+Per.capita.2010..IBGE.          -7.360e-05  4.484e-05  -1.642 0.100973    
+PIB.2010..IBGE...1000.          -9.197e-07  5.384e-07  -1.708 0.087918 .  
+GINI.Datasus.2010               -3.623e+01  1.060e+01  -3.419 0.000653 ***
+REGIONNORDESTE                   3.792e+00  2.458e+00   1.542 0.123260    
+REGIONNORTE                     -3.566e+00  3.267e+00  -1.092 0.275301    
+REGIONSUDESTE                    2.307e+00  2.080e+00   1.109 0.267539    
+REGIONSUL                        6.313e+00  2.190e+00   2.883 0.004018 ** 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-(Dispersion parameter for binomial family taken to be 1)
+Residual standard error: 17.02 on 1040 degrees of freedom
+Multiple R-squared:  0.3026,	Adjusted R-squared:  0.2912 
+F-statistic: 26.55 on 17 and 1040 DF,  p-value: < 2.2e-16
 
-    Null deviance: 1460.3  on 1057  degrees of freedom
-Residual deviance: 1384.2  on 1050  degrees of freedom
-AIC: 1400.2
+> anova(model_publicar)
+Analysis of Variance Table
 
-Number of Fisher Scoring iterations: 4
+Response: v_.
+                         Df Sum Sq Mean Sq  F value    Pr(>F)    
+Margin1                   1  80160   80160 276.8286 < 2.2e-16 ***
+Radio_only                1  11676   11676  40.3214 3.213e-10 ***
+IDH.M                     1    292     292   1.0099 0.3151653    
+POP.2010                  1    281     281   0.9708 0.3247093    
+on_air_prev               3    437     146   0.5035 0.6799168    
+Incumb                    1  21168   21168  73.1005 < 2.2e-16 ***
+TYPE                      2   2672    1336   4.6131 0.0101251 *  
+Per.capita.2010..IBGE.    1   1057    1057   3.6509 0.0563130 .  
+PIB.2010..IBGE...1000.    1   1279    1279   4.4159 0.0358446 *  
+GINI.Datasus.2010         1   6201    6201  21.4138 4.168e-06 ***
+REGION                    4   5474    1368   4.7258 0.0008794 ***
+Residuals              1040 301150     290                       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
