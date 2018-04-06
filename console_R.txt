@@ -332,3 +332,32 @@ REGION                    4   5474    1368   4.7258 0.0008794 ***
 Residuals              1040 301150     290                       
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+> apadrinhamento <- read.csv(file="~/Documents/Dona Tese/apadrinhamento_para_r.csv")
+> probit_apadrinhamento_2 <-glm(CATEG ~ NORTENORD + PRESIDENT + PADRINHO, family = binomial)
+> summary(probit_apadrinhamento_2)
+
+Call:
+glm(formula = CATEG ~ NORTENORD + PRESIDENT + PADRINHO, family = binomial)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.3938  -0.8812   0.5780   0.8742   1.5059  
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)    2.62355    0.10267  25.554  < 2e-16 ***
+NORTENORDS     0.18289    0.03721   4.915 8.86e-07 ***
+PRESIDENTFHC  -2.04153    0.10398 -19.634  < 2e-16 ***
+PRESIDENTLULA -0.91866    0.10510  -8.741  < 2e-16 ***
+PADRINHOS     -1.32760    0.04407 -30.124  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 20291  on 17421  degrees of freedom
+Residual deviance: 18250  on 17417  degrees of freedom
+AIC: 18260
+
+Number of Fisher Scoring iterations: 5
