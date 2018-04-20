@@ -361,3 +361,289 @@ Residual deviance: 18250  on 17417  degrees of freedom
 AIC: 18260
 
 Number of Fisher Scoring iterations: 5
+> dados_painel <- read.csv(file="~/Documents/Dona Tese/painel_regioes_anos.csv")
+> View(dados_painel)
+> summary(dados_painel)
+          region        id         year     
+ CENTRO-OESTE:5   Min.   :1   Min.   :2000  
+ NORDESTE    :5   1st Qu.:2   1st Qu.:2004  
+ NORTE       :5   Median :3   Median :2008  
+ SUDESTE     :5   Mean   :3   Mean   :2008  
+ SUL         :5   3rd Qu.:4   3rd Qu.:2012  
+                  Max.   :5   Max.   :2016  
+       t           n              v_.       
+ Min.   :1   Min.   : 2.00   Min.   :15.06  
+ 1st Qu.:2   1st Qu.:15.00   1st Qu.:36.33  
+ Median :3   Median :33.00   Median :41.43  
+ Mean   :3   Mean   :42.32   Mean   :39.89  
+ 3rd Qu.:4   3rd Qu.:79.00   3rd Qu.:44.78  
+ Max.   :5   Max.   :89.00   Max.   :51.20  
+    margin1          months          prodib       
+ Min.   : 8.64   Min.   : 27.0   Min.   : 141771  
+ 1st Qu.:12.05   1st Qu.: 59.0   1st Qu.: 236200  
+ Median :16.12   Median : 86.0   Median : 454121  
+ Mean   :15.36   Mean   : 92.2   Mean   : 648100  
+ 3rd Qu.:17.44   3rd Qu.:117.0   3rd Qu.: 667002  
+ Max.   :23.88   Max.   :174.0   Max.   :4226200  
+    pcapita           gini             popt       
+ Min.   : 5278   Min.   :0.4590   Min.   :  9469  
+ 1st Qu.: 8780   1st Qu.:0.4740   1st Qu.: 17837  
+ Median :14495   Median :0.5010   Median : 30284  
+ Mean   :12594   Mean   :0.5126   Mean   : 44250  
+ 3rd Qu.:16367   3rd Qu.:0.5380   3rd Qu.: 56676  
+ Max.   :18062   Max.   :0.5910   Max.   :195482  
+     idh.m            ronly           tsuccess     
+ Min.   :0.5920   Min.   :0.3600   Min.   :0.0000  
+ 1st Qu.:0.6180   1st Qu.:0.7200   1st Qu.:0.3330  
+ Median :0.6960   Median :0.7860   Median :0.4570  
+ Mean   :0.6637   Mean   :0.7852   Mean   :0.4141  
+ 3rd Qu.:0.7010   3rd Qu.:0.8640   3rd Qu.:0.5060  
+ Max.   :0.7200   Max.   :1.0000   Max.   :0.5870  
+     incumb           ratent      
+ Min.   :0.0000   Min.   :0.2271  
+ 1st Qu.:0.1540   1st Qu.:0.2840  
+ Median :0.2120   Median :0.2848  
+ Mean   :0.2144   Mean   :0.3070  
+ 3rd Qu.:0.2800   3rd Qu.:0.2871  
+ Max.   :0.5000   Max.   :0.4591  
+> library(plm)
+> attach(dados_painel)
+> Y <- cbind(tsuccess)
+> X <-cbind (margin1, months, prodib, pcapita, gini, popt, idh.m, ronly, incumb, ratent)
+> pdata <-plm.data(dados_painel, index=c("id","t"))
+> summary(pdata)
+ id    t              region       year     
+ 1:5   1:5   CENTRO-OESTE:5   Min.   :2000  
+ 2:5   2:5   NORDESTE    :5   1st Qu.:2004  
+ 3:5   3:5   NORTE       :5   Median :2008  
+ 4:5   4:5   SUDESTE     :5   Mean   :2008  
+ 5:5   5:5   SUL         :5   3rd Qu.:2012  
+                              Max.   :2016  
+       n              v_.           margin1     
+ Min.   : 2.00   Min.   :15.06   Min.   : 8.64  
+ 1st Qu.:15.00   1st Qu.:36.33   1st Qu.:12.05  
+ Median :33.00   Median :41.43   Median :16.12  
+ Mean   :42.32   Mean   :39.89   Mean   :15.36  
+ 3rd Qu.:79.00   3rd Qu.:44.78   3rd Qu.:17.44  
+ Max.   :89.00   Max.   :51.20   Max.   :23.88  
+     months          prodib           pcapita     
+ Min.   : 27.0   Min.   : 141771   Min.   : 5278  
+ 1st Qu.: 59.0   1st Qu.: 236200   1st Qu.: 8780  
+ Median : 86.0   Median : 454121   Median :14495  
+ Mean   : 92.2   Mean   : 648100   Mean   :12594  
+ 3rd Qu.:117.0   3rd Qu.: 667002   3rd Qu.:16367  
+ Max.   :174.0   Max.   :4226200   Max.   :18062  
+      gini             popt            idh.m       
+ Min.   :0.4590   Min.   :  9469   Min.   :0.5920  
+ 1st Qu.:0.4740   1st Qu.: 17837   1st Qu.:0.6180  
+ Median :0.5010   Median : 30284   Median :0.6960  
+ Mean   :0.5126   Mean   : 44250   Mean   :0.6637  
+ 3rd Qu.:0.5380   3rd Qu.: 56676   3rd Qu.:0.7010  
+ Max.   :0.5910   Max.   :195482   Max.   :0.7200  
+     ronly           tsuccess          incumb      
+ Min.   :0.3600   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:0.7200   1st Qu.:0.3330   1st Qu.:0.1540  
+ Median :0.7860   Median :0.4570   Median :0.2120  
+ Mean   :0.7852   Mean   :0.4141   Mean   :0.2144  
+ 3rd Qu.:0.8640   3rd Qu.:0.5060   3rd Qu.:0.2800  
+ Max.   :1.0000   Max.   :0.5870   Max.   :0.5000  
+     ratent      
+ Min.   :0.2271  
+ 1st Qu.:0.2840  
+ Median :0.2848  
+ Mean   :0.3070  
+ 3rd Qu.:0.2871  
+ Max.   :0.4591  
+> summary(X)
+    margin1          months          prodib       
+ Min.   : 8.64   Min.   : 27.0   Min.   : 141771  
+ 1st Qu.:12.05   1st Qu.: 59.0   1st Qu.: 236200  
+ Median :16.12   Median : 86.0   Median : 454121  
+ Mean   :15.36   Mean   : 92.2   Mean   : 648100  
+ 3rd Qu.:17.44   3rd Qu.:117.0   3rd Qu.: 667002  
+ Max.   :23.88   Max.   :174.0   Max.   :4226200  
+    pcapita           gini             popt       
+ Min.   : 5278   Min.   :0.4590   Min.   :  9469  
+ 1st Qu.: 8780   1st Qu.:0.4740   1st Qu.: 17837  
+ Median :14495   Median :0.5010   Median : 30284  
+ Mean   :12594   Mean   :0.5126   Mean   : 44250  
+ 3rd Qu.:16367   3rd Qu.:0.5380   3rd Qu.: 56676  
+ Max.   :18062   Max.   :0.5910   Max.   :195482  
+     idh.m            ronly            incumb      
+ Min.   :0.5920   Min.   :0.3600   Min.   :0.0000  
+ 1st Qu.:0.6180   1st Qu.:0.7200   1st Qu.:0.1540  
+ Median :0.6960   Median :0.7860   Median :0.2120  
+ Mean   :0.6637   Mean   :0.7852   Mean   :0.2144  
+ 3rd Qu.:0.7010   3rd Qu.:0.8640   3rd Qu.:0.2800  
+ Max.   :0.7200   Max.   :1.0000   Max.   :0.5000  
+     ratent      
+ Min.   :0.2271  
+ 1st Qu.:0.2840  
+ Median :0.2848  
+ Mean   :0.3070  
+ 3rd Qu.:0.2871  
+ Max.   :0.4591  
+> summary(Y)
+    tsuccess     
+ Min.   :0.0000  
+ 1st Qu.:0.3330  
+ Median :0.4570  
+ Mean   :0.4141  
+ 3rd Qu.:0.5060  
+ Max.   :0.5870  
+> pooling <- plm (Y ~ X, data=pdata, model= "pooling")
+> summary(pooling)
+Pooling Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "pooling")
+
+Balanced Panel: n = 5, T = 5, N = 25
+
+Residuals:
+    Min.  1st Qu.   Median  3rd Qu.     Max. 
+-0.17500 -0.04510 -0.00937  0.05260  0.11400 
+
+Coefficients:
+               Estimate  Std. Error t-value Pr(>|t|)
+(Intercept)  4.5033e+00  2.2675e+00  1.9860  0.06697
+Xmargin1     3.0420e-03  6.6358e-03  0.4584  0.65368
+Xmonths     -1.7400e-04  7.1450e-04 -0.2435  0.81113
+Xprodib      2.3394e-07  1.2796e-07  1.8283  0.08889
+Xpcapita     1.0369e-06  2.0941e-05  0.0495  0.96121
+Xgini       -2.9399e+00  1.7225e+00 -1.7067  0.10995
+Xpopt       -6.4336e-06  2.9857e-06 -2.1548  0.04907
+Xidh.m      -3.4654e+00  2.4114e+00 -1.4371  0.17267
+Xronly      -4.7009e-02  2.1672e-01 -0.2169  0.83140
+Xincumb      3.3819e-02  2.8996e-01  0.1166  0.90881
+Xratent     -5.3241e-01  4.8051e-01 -1.1080  0.28653
+             
+(Intercept) .
+Xmargin1     
+Xmonths      
+Xprodib     .
+Xpcapita     
+Xgini        
+Xpopt       *
+Xidh.m       
+Xronly       
+Xincumb      
+Xratent      
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    0.45029
+Residual Sum of Squares: 0.12795
+R-Squared:      0.71585
+Adj. R-Squared: 0.51289
+F-statistic: 3.52704 on 10 and 14 DF, p-value: 0.0159
+> between <- plm (Y ~ X, data=pdata, model= "between")
+> summary(between)
+Oneway (individual) effect Between Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "between")
+
+Balanced Panel: n = 5, T = 5, N = 25
+Observations used in estimation: 5
+
+Residuals:
+   Min. 1st Qu.  Median 3rd Qu.    Max. 
+      0       0       0       0       0 
+
+Coefficients: (6 dropped because of singularities)
+               Estimate Std. Error t-value Pr(>|t|)
+(Intercept)  9.6094e-02         NA      NA       NA
+Xmargin1     2.6389e-01         NA      NA       NA
+Xmonths     -1.9057e-02         NA      NA       NA
+Xprodib     -8.2923e-07         NA      NA       NA
+Xpcapita    -1.1446e-04         NA      NA       NA
+
+Total Sum of Squares:    0.030564
+Residual Sum of Squares: 0
+R-Squared:      1
+Adj. R-Squared: NaN
+F-statistic: NaN on 4 and 0 DF, p-value: NA
+> firstdiff <- plm (Y ~ X, data=pdata, model= "fd")
+> summary(firstdiff)
+Oneway (individual) effect First-Difference Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "fd")
+
+Balanced Panel: n = 5, T = 5, N = 25
+Observations used in estimation: 20
+
+Residuals:
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-0.12800 -0.09360 -0.00326 -0.00803  0.05090  0.15400 
+
+Coefficients:
+            Estimate  Std. Error t-value Pr(>|t|)  
+Xmargin1  5.0215e-03  5.7887e-03  0.8675  0.40602  
+Xmonths  -8.1597e-04  1.2182e-03 -0.6698  0.51813  
+Xprodib   2.6855e-07  1.4286e-07  1.8798  0.08956 .
+Xpcapita  2.7452e-05  3.0405e-05  0.9029  0.38782  
+Xgini    -5.9000e+00  3.0077e+00 -1.9616  0.07823 .
+Xpopt    -6.4621e-06  3.4146e-06 -1.8925  0.08770 .
+Xidh.m    3.5661e+00  4.1775e+00  0.8537  0.41327  
+Xronly    6.3782e-01  4.1461e-01  1.5384  0.15498  
+Xincumb   2.1403e-01  3.6093e-01  0.5930  0.56636  
+Xratent  -7.5773e-01  3.5676e+00 -0.2124  0.83607  
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    0.41425
+Residual Sum of Squares: 0.14603
+R-Squared:      0.65077
+Adj. R-Squared: 0.33646
+F-statistic: 2.04072 on 9 and 10 DF, p-value: 0.14085
+> fixed <- plm (Y ~ X, data=pdata, model= "within")
+> summary(fixed)
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "within")
+
+Balanced Panel: n = 5, T = 5, N = 25
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-0.095400 -0.050100 -0.000679  0.046100  0.136000 
+
+Coefficients:
+            Estimate  Std. Error t-value Pr(>|t|)
+Xmargin1  7.5308e-03  7.3143e-03  1.0296   0.3275
+Xmonths  -8.7111e-04  1.0233e-03 -0.8513   0.4145
+Xprodib   1.7601e-07  1.3921e-07  1.2644   0.2348
+Xpcapita  2.2932e-05  3.3929e-05  0.6759   0.5144
+Xgini    -5.4330e+00  3.1398e+00 -1.7303   0.1143
+Xpopt    -4.9407e-06  3.2453e-06 -1.5224   0.1589
+Xidh.m    2.7195e+00  4.4041e+00  0.6175   0.5507
+Xronly    3.9501e-01  3.4102e-01  1.1583   0.2736
+Xincumb  -1.0533e-01  3.3662e-01 -0.3129   0.7608
+Xratent  -3.2616e+00  3.7003e+00 -0.8814   0.3988
+
+Total Sum of Squares:    0.29747
+Residual Sum of Squares: 0.09386
+R-Squared:      0.68447
+Adj. R-Squared: 0.24272
+F-statistic: 2.16926 on 10 and 10 DF, p-value: 0.11897
+
+	Lagrange Multiplier Test - (Honda) for
+	balanced panels
+
+data:  Y ~ X
+normal = -1.6455, p-value = 0.9501
+alternative hypothesis: significant effects
+
+> pFtest(fixed, pooling)
+
+	F test for individual effects
+
+data:  Y ~ X
+F = 0.90794, df1 = 4, df2 = 10, p-value =
+0.4954
+alternative hypothesis: significant effects
