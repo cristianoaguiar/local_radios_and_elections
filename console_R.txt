@@ -647,3 +647,130 @@ data:  Y ~ X
 F = 0.90794, df1 = 4, df2 = 10, p-value =
 0.4954
 alternative hypothesis: significant effects
+> Y <- cbind(v_.)
+> pooling <- plm (Y ~ X, data=pdata, model= "pooling")
+> summary(pooling)
+Pooling Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "pooling")
+
+Balanced Panel: n = 5, T = 5, N = 25
+
+Residuals:
+   Min. 1st Qu.  Median 3rd Qu.    Max. 
+ -6.600  -1.350  -0.212   1.350   5.470 
+
+Coefficients:
+               Estimate  Std. Error t-value Pr(>|t|)   
+(Intercept)  5.9438e+01  8.0275e+01  0.7404 0.471271   
+Xmargin1     8.6959e-01  2.3492e-01  3.7017 0.002369 **
+Xmonths      1.2097e-02  2.5294e-02  0.4782 0.639864   
+Xprodib      1.1699e-05  4.5299e-06  2.5826 0.021702 * 
+Xpcapita    -1.5947e-03  7.4136e-04 -2.1510 0.049422 * 
+Xgini       -3.9379e+01  6.0981e+01 -0.6458 0.528884   
+Xpopt       -3.2484e-04  1.0570e-04 -3.0733 0.008260 **
+Xidh.m       5.7851e+00  8.5369e+01  0.0678 0.946931   
+Xronly      -4.9154e+00  7.6721e+00 -0.6407 0.532073   
+Xincumb      8.7441e-01  1.0265e+01  0.0852 0.933323   
+Xratent      4.1933e+01  1.7011e+01  2.4651 0.027242 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    1395.4
+Residual Sum of Squares: 160.36
+R-Squared:      0.88508
+Adj. R-Squared: 0.803
+F-statistic: 10.7827 on 10 and 14 DF, p-value: 5.7231e-05
+Oneway (individual) effect Between Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "between")
+
+Balanced Panel: n = 5, T = 5, N = 25
+Observations used in estimation: 5
+
+Residuals:
+   Min. 1st Qu.  Median 3rd Qu.    Max. 
+      0       0       0       0       0 
+
+Coefficients: (6 dropped because of singularities)
+               Estimate Std. Error t-value Pr(>|t|)
+(Intercept) 28.56045111         NA      NA       NA
+Xmargin1    73.77674748         NA      NA       NA
+Xmonths     -6.22700739         NA      NA       NA
+Xprodib     -0.00020503         NA      NA       NA
+Xpcapita    -0.03295677         NA      NA       NA
+
+Total Sum of Squares:    151.68
+Residual Sum of Squares: 0
+R-Squared:      1
+Adj. R-Squared: -Inf
+F-statistic: NaN on 4 and 0 DF, p-value: NA
+> firstdiff <- plm (Y ~ X, data=pdata, model= "fd")
+> summary(firstdiff)
+Oneway (individual) effect First-Difference Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "fd")
+
+Balanced Panel: n = 5, T = 5, N = 25
+Observations used in estimation: 20
+
+Residuals:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ -9.560  -2.590   0.304  -0.359   1.820   6.020 
+
+Coefficients:
+            Estimate  Std. Error t-value Pr(>|t|)   
+Xmargin1  7.9843e-01  2.3057e-01  3.4628 0.006094 **
+Xmonths   8.1815e-03  4.8521e-02  0.1686 0.869458   
+Xprodib   1.1859e-05  5.6905e-06  2.0839 0.063775 . 
+Xpcapita  6.6764e-05  1.2111e-03  0.0551 0.957122   
+Xgini     3.2774e+01  1.1980e+02  0.2736 0.789983   
+Xpopt    -3.0876e-04  1.3601e-04 -2.2701 0.046561 * 
+Xidh.m    7.8194e+01  1.6639e+02  0.4699 0.648482   
+Xronly    2.1998e+01  1.6514e+01  1.3320 0.212413   
+Xincumb   4.6524e+00  1.4376e+01  0.3236 0.752896   
+Xratent   2.3741e+01  1.4210e+02  0.1671 0.870644   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    772.01
+Residual Sum of Squares: 231.69
+R-Squared:      0.70335
+Adj. R-Squared: 0.43636
+F-statistic: 2.59125 on 9 and 10 DF, p-value: 0.077075
+> fixed <- plm (Y ~ X, data=pdata, model= "within")
+> summary(fixed)
+Oneway (individual) effect Within Model
+
+Call:
+plm(formula = Y ~ X, data = pdata, model = "within")
+
+Balanced Panel: n = 5, T = 5, N = 25
+
+Residuals:
+   Min. 1st Qu.  Median 3rd Qu.    Max. 
+ -4.050  -1.070   0.219   1.040   5.050 
+
+Coefficients:
+            Estimate  Std. Error t-value Pr(>|t|)   
+Xmargin1  9.0828e-01  2.5801e-01  3.5203 0.005536 **
+Xmonths   1.6296e-03  3.6096e-02  0.0451 0.964880   
+Xprodib   1.0479e-05  4.9105e-06  2.1340 0.058630 . 
+Xpcapita -7.9396e-04  1.1968e-03 -0.6634 0.522084   
+Xgini    -1.6762e+01  1.1076e+02 -0.1513 0.882718   
+Xpopt    -3.0038e-04  1.1448e-04 -2.6239 0.025425 * 
+Xidh.m    1.5068e+02  1.5536e+02  0.9699 0.354955   
+Xronly    1.0338e+01  1.2029e+01  0.8594 0.410255   
+Xincumb  -2.6567e+00  1.1874e+01 -0.2237 0.827471   
+Xratent   1.2817e+01  1.3053e+02  0.0982 0.923717   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Total Sum of Squares:    637.02
+Residual Sum of Squares: 116.79
+R-Squared:      0.81666
+Adj. R-Squared: 0.55998
+F-statistic: 4.45425 on 10 and 10 DF, p-value: 0.013525
