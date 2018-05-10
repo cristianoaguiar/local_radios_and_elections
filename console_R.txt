@@ -774,3 +774,64 @@ Residual Sum of Squares: 116.79
 R-Squared:      0.81666
 Adj. R-Squared: 0.55998
 F-statistic: 4.45425 on 10 and 10 DF, p-value: 0.013525
+
+> attach(amostra_todos_final)
+> probit_publicar <- glm(Elected ~ Margin1 + Radio_only + IDH.M + POP.2010 + on_air_prev + Incumb + TYPE + Per.capita.2010..IBGE. + GINI.Datasus.2010 + REGION, family = binomial)
+> summary(probit_publicar)
+
+Call:
+glm(formula = Elected ~ Margin1 + Radio_only + IDH.M + POP.2010 + 
+    on_air_prev + Incumb + TYPE + Per.capita.2010..IBGE. + GINI.Datasus.2010 + 
+    REGION, family = binomial)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.8905  -1.0569  -0.7861   1.2250   1.8980  
+
+Coefficients:
+                                  Estimate Std. Error z value
+(Intercept)                     -3.159e-01  1.574e+00  -0.201
+Margin1                          2.184e-02  4.336e-03   5.038
+Radio_onlyS                      4.839e-01  1.906e-01   2.539
+IDH.M                            7.245e-01  1.678e+00   0.432
+POP.2010                         2.002e-07  4.617e-07   0.434
+on_air_prevde cinco a 10 anos    9.897e-02  2.592e-01   0.382
+on_air_prevmais de 1/menos de 5 -2.337e-02  2.629e-01  -0.089
+on_air_prevmais de 10 anos      -9.312e-02  2.652e-01  -0.351
+IncumbS                          7.352e-01  1.601e-01   4.592
+TYPEEDUCAT                      -8.480e-01  5.264e-01  -1.611
+TYPERADCOM                      -5.897e-02  1.829e-01  -0.322
+Per.capita.2010..IBGE.          -8.925e-06  6.302e-06  -1.416
+GINI.Datasus.2010               -2.451e+00  1.314e+00  -1.866
+REGIONNORDESTE                   3.086e-01  3.018e-01   1.022
+REGIONNORTE                     -1.606e-01  4.143e-01  -0.388
+REGIONSUDESTE                    2.328e-01  2.556e-01   0.911
+REGIONSUL                        1.743e-01  2.693e-01   0.647
+                                Pr(>|z|)    
+(Intercept)                       0.8410    
+Margin1                          4.7e-07 ***
+Radio_onlyS                       0.0111 *  
+IDH.M                             0.6660    
+POP.2010                          0.6645    
+on_air_prevde cinco a 10 anos     0.7026    
+on_air_prevmais de 1/menos de 5   0.9292    
+on_air_prevmais de 10 anos        0.7255    
+IncumbS                          4.4e-06 ***
+TYPEEDUCAT                        0.1072    
+TYPERADCOM                        0.7472    
+Per.capita.2010..IBGE.            0.1567    
+GINI.Datasus.2010                 0.0621 .  
+REGIONNORDESTE                    0.3066    
+REGIONNORTE                       0.6983    
+REGIONSUDESTE                     0.3624    
+REGIONSUL                         0.5176    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1460.3  on 1057  degrees of freedom
+Residual deviance: 1374.6  on 1041  degrees of freedom
+AIC: 1408.6
+
+Number of Fisher Scoring iterations: 4
